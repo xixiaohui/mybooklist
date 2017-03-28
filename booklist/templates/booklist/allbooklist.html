@@ -1,0 +1,54 @@
+{% extends "booklist/layout.html" %}
+
+{% block content %}
+    {% for booklist in allBookLists reversed %}        
+        <!-- <div class="box booklist">    
+            <div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ booklist.title }}</div>
+                    <div class="panel-body">
+                        {{ booklist.introduce }}
+                    </div>
+                </div>
+                
+                {% for book in booklist.books.all %}
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="/tourist_bookin/?bookname={{ book.name }}">{{ book.name }}</a>
+                            <span class="badge">{{ forloop.counter }}</span>
+                        </li>
+                    </ul>
+                {% endfor %}
+               <p> Share by {{ booklist.user.get_username}}</p>
+            </div>
+        </div> -->
+
+
+        <div class=" newbooklist">    
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">{{ booklist.title }}</div>
+                        <div class="panel-body">
+                            {{ booklist.introduce }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    {% for book in booklist.books.all %}
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="/tourist_bookin/?bookname={{ book.name }}">{{ book.name }}</a>
+                                <span class="badge">{{ forloop.counter }}</span>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </div>
+               
+            </div>
+            <p> 分享者: {{ booklist.user.get_username}}</p>
+        </div>
+    {% endfor %}
+
+{% endblock %}

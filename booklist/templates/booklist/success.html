@@ -1,0 +1,25 @@
+{% extends "booklist/layout.html" %}
+
+{% block content %}
+    
+    <div class ="container">
+        <div class="jumbotron">
+            <p>{{ title }}</p>
+        </div>
+
+        <div class="jumbotron">
+            <a class="btn mybtn btn-block" href="/books">
+                TO MyBookList.
+            </a>
+            <a class="btn mybtn btn-block" href="/addbook">
+                Continue Add Book.
+            </a>
+            <a class="btn mybtn btn-block" href="/index">
+                ComeBack To Homepage.
+            </a>
+
+        </div> 
+    </div>
+
+    
+{% endblock %}

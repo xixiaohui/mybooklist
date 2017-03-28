@@ -1,0 +1,34 @@
+{% extends "booklist/layout.html" %}
+
+
+{% block content %}
+
+    <!-- <div class="jumbotron">
+        <p>Friend's BookList!</p>
+    </div> -->
+
+    {% for booklist in booklists reversed %}        
+        <div class="box booklist">    
+            <div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ booklist.title }}</div>
+                    <div class="panel-body" style="text-align: left;color: black;height: 200px;">
+                        {{ booklist.introduce }}
+                    </div>
+                </div>
+ 
+                {% for book in booklist.books.all %}
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge">{{ forloop.counter }}</span>
+                            <a href="/tourist_bookin/?bookname={{ book.name }}">{{ book.name }}</a>
+                        </li>
+                    </ul>
+                {% endfor %}
+               <p> Share by {{ booklist.user.get_username}}</p><br>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

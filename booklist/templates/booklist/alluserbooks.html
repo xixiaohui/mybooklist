@@ -1,0 +1,95 @@
+{% extends "booklist/layout.html" %}
+
+
+{% block content %}
+    <div class="container">
+    	<div class="jumbotron">
+    		<p>
+    			Welcome to {{ user.get_username }}'s BookList.
+    		</p>
+
+            <!-- {% if isFriend %}
+                <a id="freind{{ forloop.counter }}" class="btn btn-default" href="/removeFriend/?like={{ user.get_username }}" >
+                    <span id="heart{{ forloop.counter }}" class="glyphicon glyphicon-ok-sign" aria-hidden="true" ></span>
+                    <p>
+                        取消双向朋友
+                    </p>
+                </a>
+            {% else %}
+                <a id="freind{{ forloop.counter }}" class="btn btn-default" href="/addFriend/?like={{ user.get_username }}" >
+                    <span id="heart{{ forloop.counter }}" class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                    <p>
+                        成为双向朋友
+                    </p>
+                </a>
+        
+            {% endif %} -->
+
+            {% if isPrivateFriend %}
+                <a id="freind{{ forloop.counter }}" class="btn btn-default" href="/removePrivateFriend/?like={{ user.get_username }}" >
+                    <span id="heart{{ forloop.counter }}" class="glyphicon glyphicon-heart" aria-hidden="true" ></span>
+                    <p>
+                        取消关注
+                    </p>
+                </a>
+            {% else %}
+                <a id="freind{{ forloop.counter }}" class="btn btn-default" href="/addPrivateFriend/?like={{ user.get_username }}" >
+                    <span id="heart{{ forloop.counter }}" class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+                    <p>
+                        关注
+                    </p>
+                </a>
+
+            {% endif %}
+
+    	</div>
+
+        
+    	{% for booklist in booklists %}        
+            <div class="booklist">    
+                <div>
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">{{ booklist.title }}</div>
+                        <div class="panel-body" style="text-align: left;color: black;height: 200px;">
+                            {{ booklist.introduce }}
+                        </div>
+                    </div>
+                    
+                    <!-- <p> {{ booklist.books.all }}</p> -->
+                    {% for book in booklist.books.all %}
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="badge">{{ forloop.counter }}</span>
+                                <a href="/tourist_bookin/?bookname={{ book.name }}">{{ book.name }}</a>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                   
+                </div>
+            </div>
+        {% endfor %}
+
+        
+        {% for book in books %}        
+            <div class="mybook myfont">    
+                <div class="mybookname">
+                    <p>
+                        <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+                        <a href="/tourist_bookin/?bookname={{ book.name }}">{{ book.name }}</a>
+                    </p>
+                </div>
+                <small>{{ book.author }}</small>
+                <br>
+                <small>{{ book.publish }}</small>
+                <br>
+                <small>ISBN13:{{ book.ISBN13 }}</small>
+                <br>  
+                <br>
+                <small> on {{ book.date }}</small>
+            </div>
+        {% endfor %}
+    </div>
+    
+
+{% endblock %}

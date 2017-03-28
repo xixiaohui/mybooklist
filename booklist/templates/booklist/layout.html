@@ -1,0 +1,79 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="baidu-site-verification" content="nEKqUs1r2D" />
+    <meta name="msvalidate.01" content="41377A942FF20243CC726629DB8BAC0D" />
+    <meta name="description" content="what have I read?what have you read?我读了哪些书？你读了哪些书？在这里面梳理，然后分享出去。Maybe Inclde Other Lists. I wish. I am Frank Xi.I come from China.qq:394813654" />
+    <title>MyBookList我的书单 - Sort.Create.Share My BookList.梳理,创建,分享我的书单。</title>
+
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'booklist/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'booklist/xi/css/style.css' %}" />
+    {% block link %}  {% endblock  %}
+    {% block script %}  {% endblock  %}
+
+    <style type="text/css">
+        * { margin:0; }
+        #div1 { margin:auto; position:relative; }
+        .box { float:left; padding:10px; border:1px solid #ccc; background:#f7f7f7; box-shadow:0 0 8px #ccc; }
+        .box:hover { box-shadow:0 0 10px #999; }
+        .box img { width:200px; }
+        body{
+            background: #ccc;
+        }
+    </style>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?c0b1b784a8ec071bf62d037df56613ff";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body class="myfont">
+    <div class="header clearfix " style="margin:0px;">
+        <nav>
+            <diV>
+                <a href="/index">
+                    <h3 class="text-frank">MYBOOKLIST</h3>
+                </a>
+            </diV>
+            
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a href="/allbooks/">所有的书</a></li>
+                <li role="presentation"><a href="/allbooklist/">所有的书单</a></li>
+                <li role="presentation"><a href="/allusers/">推荐用户</a></li>
+                <li role="presentation"><a href="/friendbooklist/">朋友的书单</a></li>
+                <li role="presentation"><a href="/books/">我的书</a></li> 
+                <li role="presentation"><a href="/mylogin/">LogIn</a></li>
+                <li role="presentation"><a href="/logout/">LogOut</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- <div class="logo">
+        <a href='/index'>
+            {% load staticfiles %}
+            <img class="img-rounded" src="{% static 'booklist/img/mylogo.png' %}" />     
+        </a>        
+    </div> -->
+    <div>
+        
+        {% block content %}  {% endblock  %}
+       
+    </div>
+
+    
+    <div>
+        <a class='btn btn-info' href ="/other/" >
+            <span class="glyphicon glyphicon-lamp" aria-hidden="true"></span>
+        </a>
+    </div>
+    
+    {% block lastScript %} {% endblock %}
+</body>
+</html>

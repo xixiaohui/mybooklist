@@ -1,0 +1,32 @@
+{% extends "booklist/layout.html" %}
+
+{% block link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'booklist/xi/css/formstyle.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <div class ="container">
+        <!-- <div class="jumbotron">
+            <p>Add Book</p>
+            <p>添加你看过的书</p>
+        </div> -->
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <form class="bootstrap-frm" action="/addbook/" method="post">
+                    <div >
+                        {% csrf_token %}
+                        {{ form }}
+                        <div>
+                            <input type="submit" value="AddBook"></input>
+                            <!-- <span class="glyphicon glyphicon-send" aria-hidden="true"></span> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock %}

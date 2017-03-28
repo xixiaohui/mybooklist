@@ -1,0 +1,99 @@
+{% extends "booklist/layout.html" %}
+
+{% block link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'booklist/xi/css/xieditor.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'booklist/xi/css/formstyle.css' %}" />
+{% endblock %}
+
+{% block script %}  
+<style type="text/css">
+	/*.panel-heading a{
+		color: red;	
+	}*/
+</style>
+
+{% endblock  %}
+
+{% block content %}
+	<div class="container">
+	
+	    <div class="jumbotron">
+	        <!-- <p>{{ bookname }}</p> -->
+	        
+	        <!-- <li>{ 所有的摘抄 }</li> -->
+	        <div>
+	        	<div class="panel panel-default">
+		            <div class="panel-heading">{{ book.name }}</div>
+		            <div class="panel-heading">{{ book.author }}</div>
+		            <div class="panel-heading">{{ book.publish }}</div>
+		            <div class="panel-heading">ISBN13:{{ book.ISBN13 }}</div>
+		            <div class="panel-heading">
+		            	<a href="{{ book.getamazonURL }}" target="_blank">
+		            		<p>在Amazon寻找这本书</p>
+		            	</a>
+		            </div>
+		            <div class="panel-body">
+		                {{ book.summary }}
+		            </div>
+	        	</div>
+	        </div>
+	        <P>{ 摘抄、标记、评论、分享 }</P>
+	    </div>
+
+	    <!-- editor -->
+	    {% if lock %}
+	    <div class="xieditor">
+			<div>
+				<button type="button" class="btn btn-default" style="float: left;">
+					<span class="glyphicon glyphicon-bitcoin" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default" style="float: left;">
+					<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default" style="float: left;">
+					<span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default" style="float: left;">
+					<span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default" style="float: right;">
+					<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default" style="float: right;">
+					<span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+				</button>
+			</div>
+			<div>
+				<form action="/bookin/?bookname={{ book.name }}" method="post">
+					{% csrf_token %}
+					{{ form }}
+					<button type="submit" class="btn btn-default btn-block">
+						<span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+					</button>
+				</form>
+			</div>
+		</div>
+		<hr>
+		{% endif %}
+		
+		<!-- notes -->
+		{% for note in bookNotes reversed %}
+		<div class="jumbotron">
+			{% if lock %}
+			<a type="button" class="btn btn-default" style="float: right;" href="/rmnote/?pk={{ note.pk }}">
+				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			</a>
+			{% endif %}
+			<div class="panel panel-default">
+	            <div class="panel-heading">{{ note.time }}</div>
+	            <div class="panel-body">
+	                {{ note.text }}
+	            </div>
+	        </div>
+		</div>
+		{% endfor %}
+
+	</div>
+
+{% endblock %}

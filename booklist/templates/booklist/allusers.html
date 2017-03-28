@@ -1,0 +1,42 @@
+{% extends "booklist/layout.html" %}
+
+{% block script %}
+    <script tpye="text/javascript">
+        window.onload = function(){
+
+            var heart = document.getElementById("heart");
+            var line = document.getElementById("line");
+            heart.onclick = function(){
+                heart.className = "glyphicon glyphicon-heart";
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+	<!-- <div class="jumbotron">
+		<p>
+			推荐用户
+		</p>
+	</div> -->
+
+	{% for user in allusers reversed %}        
+        <div class="alluser">
+            <div>
+            	<a class="btn btn-default btn-block" href="/alluserbooks/?username={{ user.getName }}">
+            		{{ user.getName }}
+            	</a>
+            </div>
+            <div class="flag">
+                {% if tuorist.getUser.is_authenticated %}
+                    {% if tuorist in user.getPrivateFriend.all %}
+                        <span class="glyphicon glyphicon-heart" aria-hidden="true" ></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+                    {% endif %}
+                {% endif %}
+            </div>   
+        </div>
+    {% endfor %}
+
+{% endblock %}

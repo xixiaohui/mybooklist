@@ -1,0 +1,61 @@
+{% extends "booklist/layout.html" %}
+
+{% block link %}
+    
+    
+{% endblock  %}
+
+
+{% block content %}
+    
+    <!-- {% for book in allbooks reversed %}
+    <div id='div1'>
+        <div class="mybook box ">
+            <div class="mybookname">
+                
+                <a href="/tourist_bookin/?bookname={{ book.name }}">
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>{{ forloop.counter }}.{{ book.name }}</a>
+            </div>
+            <br>
+            <small>{{ book.author }}</small>
+            <br>
+            <small>{{ book.publish }}</small>
+            <br>
+            <small>ISBN13:{{ book.ISBN13 }}</small>
+            <br>
+            <br>
+            <small>Share by {{ book.user.get_username }} </small>
+            <br>
+            <small>On {{ book.date }}</small>
+        </div>
+    </div>
+
+    {% endfor %} -->
+
+    {% for book in allbooks reversed %}
+    <div class="newbook">
+        <div class="row">
+            <div class="col-md-1">
+                <p>No.{{ forloop.counter }}</p>
+            </div>
+            <div class="col-md-4">
+                <div class="bookname">
+                    
+                    <a href="/tourist_bookin/?bookname={{ book.name }}">
+                    <<{{ book.name }}>></a>
+                    <br>
+                    <small>{{ book.author }}</small>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="introduce">
+                    <p>{{ book.summary }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    {% endfor %}
+
+{% endblock %}

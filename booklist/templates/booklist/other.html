@@ -1,0 +1,146 @@
+{% extends "booklist/layout.html" %}
+
+{% block link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'booklist/xi/css/formstyle.css' %}" />
+{% endblock %}
+
+{% block script %}
+    {% load staticfiles%}
+    <script src="{% static 'booklist/xi/js/frank.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    
+    <div class="jumbotron">
+        <p>
+            AgeDays查询 AgeDays = {{ days }}
+        </p>
+        <small>依次输入年月日</small>
+        <form class="bootstrap-frm" action="/other/" method="post" >
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="计算AgeDays"></input>
+        </form>
+        <p>
+            {{ text }}
+        </p>
+    </div>
+
+    <div id ="scissor" class="jumbotron" style="text-align: left;">
+        <h3>Do Next.</h3>
+        <ul>
+            <li>整理书单，摘抄扎记</li>
+            <li>写博客，记录点滴时光</li>
+            <li>搜集一些菜单、歌单、影单，还有一些我认为有价值的单子</li>
+            <li>百度SEO优化,百度统计</li>
+            <!-- <li>添加菜单、歌单、影单</li> -->
+        </ul>
+        <a id ="cut" type="button" class="btn btn-default" style="float: right;">
+            <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>    
+        </a>
+    </div>
+  
+    <div class="jumbotron" style="text-align: left;">
+        <h3>Tips.</h3>
+        <ul>
+            <li>
+                我认为书单是存在价值的。在书的海洋里，人的一生显得太过匆忙。有选择的读书，
+                是很重要的事情。如果有前辈或者值得信赖的人，在他的阅读经历中，为爱读书的人提供这方面的参考，将是一件很有意义的事情。
+            </li>
+            <br>
+            <li>
+                与平台的搭建相比，收录有价值的书单，才是难度更大的事情。
+                这个平台的书单必须遵守下面的规则：
+                1.提交书单的人看过书单中的书；
+                2.提交书单的人对书单中的每本书都做过扎记；
+                3.提交书单时需要添加推荐理由；
+            </li>
+            <br>
+            <li>
+                建议查阅书单的人做的事情：
+                1.读书;
+                2.制作自己的书单;
+            </li>
+            <br>
+            <li>
+                如果从书单的分享开始，可以营造一种分享书单、读书、再分享的氛围的话，这里的访问者会越來越多。
+                对接一些图书的宣传广告，我想这个平台基本的生存能力就具备了。 
+            </li>
+            <br>
+            <li>星星之火，未必可以燎原，但却可以温暖取暖之人.</li>
+            <br>
+            <li>开放注册,</li>
+            <li>增加添加书籍功能，增加摘抄扎记功能</li>
+            <li>增加博客功能</li>
+            <li>首页添加计算AgeDays的小玩意!</li>
+            <li>Do not forget your password if you want to play.</li>
+            <li>
+                网站的域名、服务器到客户端搭建都是我一个个代码敲出来的。涉及的技术内容有很多：
+                HTML,CSS,JavaScript,Django,
+                Bootstrap,Python,Nginx,Uwsgi。
+            </li>
+            <br>
+            <li>
+                5月9号，百度、Ｇoogle、Bing等搜索引擎均收录了这个网站，大家可以通过mybooklist
+                关键词搜索，其中百度首页第二个出现，Google次页第一个出现，关于百度SEO优化，什么也没做。
+            </li>
+
+            <li>
+                5月10日，增加了制作书单的功能，除了提交书籍之外，可以进一步制作书单，当然书单中的书来自你的书籍.
+            </li>
+            <!-- <li>添加菜单、歌单、影单</li> -->
+        </ul>
+        <!-- <a type="button" class="btn btn-default" style="float: right;">
+            <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>    
+        </a> -->
+    </div>
+    
+
+    
+    
+    <div class="jumbotron">
+        <a type="button" class="btn btn-default btn-block" href="/zodiac/">
+            ZODIAC
+        </a>
+    </div>
+
+    <div class="jumbotron">
+        <p>username:{{ username }}</p>
+        <small>qq:{{ qq }}</small>
+        <small>weixin:{{ weixin }}</small>
+        <small>address:{{ address }}</small>
+        <br>
+        <a href="https://www.douban.com/people/122681487/">
+            豆瓣
+        </a>
+        <a href="http://www.tianya.cn/112374013">
+            天涯
+        </a>
+        <a href="http://www.cnblogs.com/xixiaohui/">
+            博客园
+        </a>
+        
+    </div>
+
+
+    <footer class='foot'>
+        
+        
+        
+        <a href="https://www.douban.com/people/122681487/" >
+            豆瓣
+        </a>
+        <a href="http://www.tianya.cn/112374013">
+            天涯
+        </a>
+        <a href="http://www.cnblogs.com/xixiaohui/">
+            博客园
+        </a>
+
+        <span class="glyphicon glyphicon-copyright-mark myfont" aria-hidden="true" >2016皖ICP备15009512</span>
+
+    </footer>
+
+
+{% endblock %}

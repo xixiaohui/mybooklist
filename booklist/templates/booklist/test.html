@@ -1,0 +1,87 @@
+﻿﻿﻿{% extends "booklist/layout.html" %}
+
+{% block link %}
+	<!-- {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'booklist/xi/css/default.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'booklist/xi/css/normalize.css' %}" /> -->
+    <style type="text/css">
+    	* { margin:0; }
+		#div1 { margin:auto; position:relative; }
+		.box { float:left; padding:10px; border:1px solid #ccc; background:#f7f7f7; box-shadow:0 0 8px #ccc; }
+		.box:hover { box-shadow:0 0 10px #999; }
+		.box img { width:200px; }
+    </style>
+{% endblock  %}
+
+{% block script %}
+
+{% endblock  %}
+
+{% block content %}
+
+<div class="htmleaf-content bgcolor-3">
+	<div id="div1">
+		{% load staticfiles %}
+	    <div class="box"><img src="{% static 'booklist/img/01.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/02.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/03.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/04.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/05.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/06.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/07.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/01.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/02.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/03.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/04.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/05.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/06.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/07.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/01.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/02.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/03.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/04.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/05.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/06.jpg' %}" alt=""></div>
+	    <div class="box"><img src="{% static 'booklist/img/07.jpg' %}" alt=""></div>
+	</div>
+</div>
+
+    
+
+    
+{% endblock %}
+
+
+{% block lastScript %}
+
+<!-- {% load staticfiles %} -->
+<script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+<!-- <script src="{% static 'booklist/js/jquery-1.11.3.min.js' %}"></script> -->
+{% load staticfiles %}
+<script src="{% static 'booklist/xi/js/jquery.waterfall.js' %}"></script>
+<script>
+$("#div1").waterfall({
+    itemClass: ".box",
+    minColCount: 2,
+    spacingHeight: 10,
+    resizeable: true,
+    ajaxCallback: function(success, end) {
+        var data = {"data": [
+            { "src": "03.jpg" }, { "src": "04.jpg" }, { "src": "02.jpg" }, { "src": "05.jpg" }, { "src": "01.jpg" }, { "src": "06.jpg" }
+        ]};
+        var str = "";
+        var templ ='<div class="box" style="opacity:0;filter:alpha(opacity=0);"><div class="pic"><img src="/static/booklist/img/{src}" /></div></div>'
+
+        for(var i = 0; i < data.data.length; i++) {
+            str += templ.replace("{src}", data.data[i].src);
+        }
+        // alert(str);
+
+        $(str).appendTo($("#div1"));
+        success();
+        end();
+    }
+});
+</script>
+
+{% endblock %}

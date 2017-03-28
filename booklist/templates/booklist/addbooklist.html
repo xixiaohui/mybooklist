@@ -1,0 +1,52 @@
+{% extends "booklist/layout.html" %}
+
+{% block link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'booklist/xi/css/formstyle.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <div class ="container">
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <form class="bootstrap-frm" action="/addbooklist/" method="post">
+                    <div >
+                        {% csrf_token %}
+                        {{ form }}
+                        <div>
+                            <input type="submit" value="addBookList"></input>
+                            <!-- <span class="glyphicon glyphicon-send" aria-hidden="true"></span> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% for booklist in allBookLists reversed %}        
+            <div class="booklist">    
+                <div>
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">{{ booklist.title }}</div>
+                        <div class="panel-body">
+                            {{ booklist.introduce }}
+                        </div>
+                    </div>
+                    
+                    <!-- <p> {{ booklist.books.all }}</p> -->
+                    {% for book in booklist.books.all %}
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="badge">{{ forloop.counter }}</span>
+                                <a href="/tourist_bookin/?bookname={{ book.name }}">{{ book.name }}</a>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                   <small> upload by {{ booklist.user.get_username}}</small><br>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

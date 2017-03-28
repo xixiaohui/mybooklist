@@ -1,0 +1,47 @@
+{% extends "booklist/layout.html" %}
+
+{% block link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'booklist/xi/css/formstyle.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <div class='login_info'>
+        {% if user.is_authenticated %}
+            <h1>Hi,{{ user.get_username }}.Welcome to MYBOOKLIST!</h1>
+        {% else %}
+            <h1>Please Login.</h1>
+        {% endif %}
+    </div>
+
+    {% if not user.is_authenticated %}
+    <form action="/mylogin/" method="post" class="bootstrap-frm">
+            {% csrf_token %}
+            {{ form }}
+     
+            <input type="submit" value="登陆"></input>
+    
+            <!-- <a href="/register/" >
+                <button type="button" class="btn btn-default btn-block">
+                    <span class="glyphicon glyphicon-ice-lolly" aria-hidden="true">注册 Closed</span>
+                </button>
+            </a> -->
+            <a href="/allbooks/" >
+                <button type="button" class="btn btn-default btn-block">
+                    <span class="glyphicon glyphicon-ice-lolly" aria-hidden="true">注册 Closed</span>
+                </button>
+            </a>
+    </form>
+    {% endif %}
+    <!-- <div class="bootstrap-frm">
+        <a href="/register/" >
+            <button type="button" class="btn btn-default btn-block">
+                <span class="glyphicon glyphicon-ice-lolly" aria-hidden="true">注册</span>
+            </button>
+            
+        </a>
+    </div> -->
+
+
+
+{% endblock %}

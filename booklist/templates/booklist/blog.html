@@ -1,0 +1,54 @@
+{% extends "booklist/layout.html" %}
+
+{% block link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'booklist/xi/css/formstyle.css' %}" />
+{% endblock %}
+
+
+{% block content %}
+
+    <!-- <div class="jumbotron">
+        <p>Add Blog</p>
+    </div> -->
+    <div class ="container">
+        <div>
+            <form class="xiblog" method="post" action="/addblog/">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="btn btn-default btn-block">
+                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                </button>
+            </form>
+        </div>
+        
+        <hr>
+        {% for blog in blogs reversed %}
+        <div class="jumbotron xiblog">
+            <a type="button" class="btn btn-default" style="float: right;" href="/rmblog/?title={{ blog.title }}">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </a>
+            <!-- <p>
+                {{ blog.title }}
+            </p>
+            <input type="textarea" value="{{ blog.text }}">
+               
+            </input> -->
+
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ blog.title }}</div>
+                <div class="panel-body">
+                    {{ blog.text }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div>
+            <p class="frank">
+                I'm {{ username }}.
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

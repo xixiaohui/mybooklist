@@ -1,0 +1,8 @@
+<uwsgi>
+	<master>true</master>
+	<socket>101.200.186.118:199</socket>
+	<chdir>/root/frank</chdir>	
+	<module>frank.wsgi</module>
+	<processes>4</processes>
+	<daemonize>/root/uwsgi.log</daemonize>
+</uwsgi>

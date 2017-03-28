@@ -1,0 +1,18 @@
+{% extends "booklist/layout.html" %}
+
+{% block link %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'booklist/xi/css/formstyle.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+    <form action="/register/" method="post" class="bootstrap-frm">
+            {% csrf_token %}
+            {{ form }}
+            <!-- <div> -->
+            <input type="submit" value="注册"></input>
+            <!-- </div> -->
+        </div>
+    </form>
+{% endblock %}

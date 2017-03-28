@@ -1,0 +1,95 @@
+
+{% extends "booklist/layout.html" %}
+
+{% block content %}
+
+    <!-- <div class ="jumbotron" style="background-color: #bbb;">
+        <p>Next Step.20160429</p>
+        <small>1.加书</small></br>
+        <small>2.添加段落、标记、评论、社交分享</small>
+    </div> -->
+
+    <div class="container">
+        <br>
+        <div class = "addbook">
+        <a class="btn btn-default btn-block" href="/addbook">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Book
+        </a>
+        </div>
+        <br>
+        <div class = "addbook">
+            <a class="btn btn-default btn-block" href="/addbooklist">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                BookList
+            </a>
+        </div>
+        <br>
+        <div class = "addbook">
+            <a class="btn btn-default btn-block" href="/addblog">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                Blog
+            </a>
+        </div>
+    </div>
+    
+    <hr>
+    
+
+    {% for book in books reversed %}
+    <div id='div1'>    
+        <div class="box mybook">    
+            <div class="mybookname">
+                
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+                <a href="/bookin/?bookname={{ book.name }}">{{ forloop.counter}}.{{ book.name }}</a>    
+            </div>
+            <br>
+            <small>{{ book.author }}</small>
+            <br>
+            <small>{{ book.publish }}</small>
+            <br>
+            <small>ISBN13:{{ book.ISBN13 }}</small>
+            <br>
+            <br>
+            <small>{{ book.date }}</small>
+            
+            <a href="/minus/?bookname={{ book.name }}" id="bookminus" class="btn btn-default">
+                <span class="glyphicon glyphicon-scissors" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- <div>
+        <p class="frank">
+            I'm {{ username }}.
+        </p>
+    </div> -->
+
+
+    {% for friendbook in friendsBooks.all %}
+        <div class="box mybook">    
+            <div class="mybookname">
+                <a href="/bookin/?bookname={{ friendbook.name }}">{{ friendbook.name }}</a>
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+            </div>
+            <br>    
+            <small>{{ friendbook.author }}</small>
+            <br>
+            <small>{{ friendbook.publish }}</small>
+            <br>
+            <small>ISBN13:{{ friendbook.ISBN13 }}</small>
+            <br>
+            <small>{{ friendbook.date }}</small>
+            <br>
+            <br>
+            <small>Share by My friend {{ friendbook.user.get_username }}</small>
+            
+        </div>
+        
+    {% endfor %}
+{% endblock %}
+
+
+
